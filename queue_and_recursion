@@ -1,0 +1,57 @@
+# p4 python // queue and recursion
+# DECLARE Queue : ARRAY [0:99] OF INTEGER
+global Queue
+global HeadPointer
+global TailPointer
+Queue = [0] * 100
+HeadPointer = -1
+TailPointer = 0
+
+def Enqueue(value):
+    global HeadPointer
+    global TailPointer
+    global Queue
+    if TailPointer < 100:
+        Queue[TailPointer] = value
+        TailPointer = TailPointer + 1
+        return True
+        if HeadPointer == -1:
+            HeadPointer = 0
+    else:
+        print("queue is full")
+        return False
+
+def Dequeue():
+    global Queue
+    global HeadPointer
+    global TailPointer
+    if HeadPointer == -1:
+        print("stack is empty")
+        return False
+    else:
+        item = Queue[HeadPointer]
+        HeadPointer = HeadPointer + 1
+        return True
+
+    if HeadPointer == TailPointer:
+        TailPointer = 0
+        HeadPointer = -1
+
+finalFlag = True
+for num in range(1, 21):
+    temp = Enqueue(num)
+    if temp == False:
+        finalFlag = False
+if finalFlag == True:
+    print("successful")
+else:
+    print("unsuccessful")
+
+def RecursiveOutput(Start):
+    if Start < 0:
+        return 0
+    else:
+        return Queue[Start] + RecursiveOutput(Start-1)
+
+temp = RecursiveOutput(TailPointer)
+print(temp)
