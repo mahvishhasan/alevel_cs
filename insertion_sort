@@ -1,0 +1,20 @@
+# p4 python // INSERTION SORT
+# outer (FOR) loop is used to access individual elements
+# inner (conditional while loop) will find the correct position of the element
+arrayData = [10, 5, 6, 7, 1, 12, 13, 15, 21, 8]
+
+def InsertionSort():
+    arraysize = 10
+
+    for pointer in range(1, arraysize):
+        valuetoinsert = arrayData[pointer]
+        holeposition = pointer
+
+        while (holeposition > 0) and (arrayData[holeposition - 1] < valuetoinsert): # for ascending order, simply switch the sign in (arrayData[holeposition - 1] > valuetoinsert)
+            arrayData[holeposition] = arrayData[holeposition - 1]
+            holeposition = holeposition - 1
+
+        arrayData[holeposition] = valuetoinsert
+
+InsertionSort()
+print(arrayData)
