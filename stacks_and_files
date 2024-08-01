@@ -1,0 +1,92 @@
+# p4 python // stacks and files
+# new question (10 day session lecture 7)
+# DECLARE Animal : ARRAY [0:19] OF STRING
+# DECLARE Colour : ARRAY [0:9] OF STRING
+global Animal
+global Colour
+global AnimalTopPointer
+global ColourTopPointer
+
+Animal = [""] * 20
+Colour = [""] * 10
+AnimalTopPointer = 0
+ColourTopPointer = 0
+
+
+def PushAnimal(DataToPush):
+    global Animal
+    global AnimalTopPointer
+    if AnimalTopPointer == 20:
+        return False
+    else:
+        Animal[AnimalTopPointer] = DataToPush
+        AnimalTopPointer = AnimalTopPointer + 1
+        return True
+
+def PopAnimal():
+    global Animal
+    global AnimalTopPointer
+    if AnimalTopPointer == 0:
+        return ""
+    else:
+        returnData = Animal[AnimalTopPointer - 1]
+        AnimalTopPointer = AnimalTopPointer - 1
+        return returnData
+
+def ReadData():
+    global AnimalTopPointer
+    global Animal
+    try:
+        AnimalFile = open("AnimalData.txt", "r")
+        for line in AnimalFile:
+            PushAnimal(line.strip())
+        AnimalFile.close()
+    except IOError:
+        print("file was not found")
+    try:
+        ColourFile = open("ColourData.txt", "r")
+        for line in ColourFile:
+            PushColour(line.strip())
+        ColourFile.close()
+    except IOError:
+        print("file was not found")
+
+def PushColour(DataToPush):
+    global Colour
+    global ColourTopPointer
+    if ColourTopPointer == 20:
+        return False
+    else:
+        Colour[ColourTopPointer] = DataToPush
+        ColourTopPointer = ColourTopPointer + 1
+        return True
+
+def PopColour():
+    global Colour
+    global ColourTopPointer
+    if ColourTopPointer == 0:
+        return ""
+    else:
+        returnData = Colour[ColourTopPointer - 1]
+        ColourTopPointer = ColourTopPointer - 1
+        return returnData
+
+def OutputItem():
+    animal_data = PopAnimal()
+    colour_data = PopColour()
+    if colour_data == "":
+        PushAnimal(animal_data)
+        print("no colour")
+    elif animal_data == "":
+        PushColour(colour_data)
+        print("no animal")
+    else:
+        combine = colour_data + " " + animal_data
+        print(combine)
+
+
+ReadData()
+OutputItem()
+OutputItem()
+OutputItem()
+OutputItem()
