@@ -1,0 +1,97 @@
+# p4 python // linked list
+class node():
+    # PUBLIC data : INTEGER
+    # PUBLIC pointer : INTEGER
+    global LinkedList
+    global emptyList
+    def __init__(self, dataP, nextNodeP):
+        self.data = dataP
+        self.nextNode = nextNodeP
+
+LinkedList = [node(1, 1), node(5, 4), node(6, 7), node(7, -1), node(2, 2), node(0, 6), node(0, 8), node(56, 3), node(0, 8), node(0, -1)] # unordered
+startPointer = 0
+emptyList= 5
+
+# unordered link list insertion
+def addNode(currentPointer):
+    global LinkedList
+    global emptyList
+    data = int(input("enter the data to be added: "))
+    # check if array full or not
+    if emptyList < 0 or emptyList > 9:
+        return False
+    else:
+        # increment empty list pointer after storing it in temporary freeList
+        freeList = emptyList
+        emptyList = LinkedList[emptyList].nextNode
+
+        # create new node
+        newNode = node(data, -1)
+
+        # store where freeList is pointing
+        LinkedList[freeList] = newNode
+
+        # find the last node index
+        previouspointer = 0
+        while currentPointer != -1:
+            previouspointer = currentPointer
+            currentPointer = LinkedList[currentPointer].nextNode
+
+        LinkedList[previouspointer].nextNode = freeList
+        return True
+
+
+
+
+
+
+    # linked list deletion
+    def deleteNode():
+        global LinkedList
+        global emptyList
+        global startPointer
+    currentPointer = startPointer
+    data = int("enter the data to delete: ")
+    previousPointer = 0
+    while currentPointer != -1 and LinkedList[currentPointer].data != data:
+        previousPointer = currentPointer
+        currentPointer = LinkedList[currentPointer].nextNode
+    if currentPointer == -1:
+        return False
+    else:
+        if currentPointer == startPointer:
+            startPointer = LinkedList[startPointer].nextNode
+        else:
+            LinkedList[previousPointer].nextNode = LinkedList[currentPointer].nextNode
+        LinkedList[currentPointer].data = 0
+        LinkedList[currentPointer].nextNode = emptyList
+        emptyList = currentPointer
+        return True
+
+# ordered insertion
+
+def OrderedInsert(currentPointer):
+    global LinkedList
+    global emptyList
+    global startPointer
+    dataToInsert = int(input("enter data to insert: "))
+    if emptyList <0 or emptyList > 9:
+        return False
+    else:
+        freeList = emptyList
+        emptyList = LinkedList[freeList].nextNode
+
+        newNode = node(dataToInsert, -1)
+
+        LinkedList[freeList] = newNode
+
+    while currentPointer != -1 and LinkedList[currentPointer].data < dataToInsert:
+        previouspointer = currentPointer
+        currentPointer = LinkedList[currentPointer].nextNode
+    if currentPointer == startPointer:
+        LinkedList[freeList].nextNode = startPointer
+        startPointer = freeList
+    else:
+        LinkedList[freeList].nextNode = LinkedList[previouspointer].nextNode
+        LinkedList[previouspointer].nextNode = freeList
+    return True
