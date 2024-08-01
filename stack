@@ -1,0 +1,99 @@
+# p4 python // stack
+names = [""] * 5
+stackpointer = -1
+
+def Push(value):
+    global names
+    global stackpointer
+    if stackpointer == 4:
+        print("stack is full")
+    else:
+        stackpointer = stackpointer + 1
+        names[stackpointer] = value
+
+def Pop():
+    global names
+    global stackpointer
+    if stackpointer == -1:
+        print("stack is empty")
+    else:
+        names[stackpointer] = ""
+        print(names[stackpointer])
+        stackpointer = stackpointer - 1
+
+Push("Taha")
+Push("Ali")
+Pop()
+print(names)
+
+
+# question
+# DECLARE StackData : ARRAY [0,9] OF INTEGER
+# DECLARE StackPointer : INTEGER
+global StackData
+global StackPointer
+StackData = [""] * 10
+StackPointer = 0
+
+# part b
+def PrintArray():
+    global StackData
+    global StackPointer
+    print(StackPointer)
+    for x in range(10):
+        print(StackData[x])
+
+# part c
+def Push(Num):
+    global StackData
+    global StackPointer
+    if StackPointer > 9:
+        return False
+    else:
+        StackData[StackPointer] = Num
+        StackPointer = StackPointer + 1
+        return True
+
+# part d
+for x in range(11):
+    Value = int(input("enter num: "))
+    temp = Push(Value)
+    if temp == True:
+        print("Successfully Added")
+    else:
+        print("Stack is Full")
+
+PrintArray()
+
+# part e
+def Pop():
+    global StackData
+    global StackPointer
+    if StackPointer == 0:
+        return -1
+    else:
+        StackPointer = StackPointer - 1
+        temp = StackData[StackPointer]
+        return temp
+
+# recording in yt playlist
+Names = [""] * 5
+stackpointer = 0
+
+def Push(value):
+    global Names
+    global stackpointerr
+    if stackpointerr > 4:
+        print("stack is full")
+    else:
+        Names[stackpointer] = value
+        stackpointerr = stackpointerr + 1
+
+def Pop():
+    global Names
+    global stackpointerr
+    if stackpointerr == 0:
+        print("stack is empty")
+    else:
+        stackpointerr = stackpointerr - 1
+        print(Names[stackpointerr])
