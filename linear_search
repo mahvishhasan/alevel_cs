@@ -1,0 +1,18 @@
+# python code // linear search
+# how to declare and initialize an array
+arrayData = [10, 5, 5, 7, 1, 12, 13, 15, 21, 8]
+# declare a function and compare it's parameter to the array arrayNum to return a boolean value
+def linearSearch(number):
+    for x in range(0, 10):
+        if arrayData[x] == number:
+            return True
+        else:
+            return False
+
+value = int(input("Enter number: "))
+found = linearSearch(value)
+
+if found == True:
+    print("VALUE FOUND")
+else:
+    print("VALUE NOT FOUND")
