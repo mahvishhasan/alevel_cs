@@ -1,0 +1,23 @@
+# p4 python // recursion file 2
+def IterativeCalculate(num):
+    total = 0
+    ToFind = num
+    while num != 0:
+        if ToFind % num == 0:
+            total = total + num
+        num = num - 1
+    return total
+
+
+temp = IterativeCalculate(10)
+print("iterative: ", temp)
+
+def RecursiveValue(num, ToFind):
+    if num == 0:
+        return 0
+    elif ToFind % num == 0:
+        return num + RecursiveValue(num - 1, ToFind)
+    else:
+        return RecursiveValue(num - 1, ToFind)
+temp2 = RecursiveValue(50, 50)
+print("recursive: ", temp2)
